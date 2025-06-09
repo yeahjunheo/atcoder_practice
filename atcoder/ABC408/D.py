@@ -1,27 +1,16 @@
 t = int(input())
-cases = []
 for _ in range(t):
     n = int(input())
     s = input()
-    cases.append((n, s))
 
-for n,s in cases:
-    if s.count('1') == n or s.count('0') == n:
-        print(0)
-        continue
-    ones = [len(x) for x in s.split('0') if x]
-    zeros = [len(x) for x in s.split('1') if x]
-    print(ones, zeros)
+    count = [0] * (n + 1)
+    for i in range(n):
+        count[i + 1] = count[i] + (1 if s[i] == "0" else -1)
+    totOnes = s.count("1")
+    ma = 0
+    res = 0
+    for i in range(n + 1):
+        res = min(res, count[i] - ma)
+        ma = max(ma, count[i])
 
-    if len(ones) == 1:
-        print(0)
-        continue
-    if len(zeros) == 1:
-        print(min(zeros[0], min(ones)))
-        continue
-
-
-    ones_change = sum(ones) - max(ones)
-    zeros_change = sum(zeros) - max(zeros)
-    print(ones_change, zeros_change)
-    print(min(ones_change, zeros_change))
+    print(totOnes + res)
