@@ -44,24 +44,27 @@ square869120
     ),
 ]
 
-def solve():
-    N = int(input())
-    request = list()
-    for _ in range(N):
-        request.append(input())
-    unique = set(request)
-    for i in range(N):
-        if request[i] in unique:
-            print(i+1)
-            unique.discard(request[i])
-
 # def solve():
 #     N = int(input())
+#     res = []
 #     users = set()
-
 #     for i in range(N):
-#         userID = input()
-#         if userID in users:
+#         request = input()
+#         if request in users:
 #             continue
-#         users.add(userID)
-#         print(i+1)
+#         res.append(i+1)
+#         users.add(request)
+#     for i in res:
+#         print(i)
+    
+
+def solve():
+    N = int(input())
+    users = set()
+
+    for i in range(N):
+        userID = input()
+        if userID in users:
+            continue
+        users.add(userID)
+        print(i+1)
